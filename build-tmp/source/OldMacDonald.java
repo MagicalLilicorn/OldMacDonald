@@ -1,5 +1,21 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class OldMacDonald extends PApplet {
+
 //your variable declarations here
-void setup() {
+public void setup() {
 	//your java code here
 	Farm animalFarm = new Farm();
 	animalFarm.animalSounds();
@@ -12,7 +28,7 @@ interface Animal {
 
 class Cow implements Animal {
 	public String myType;
-	private String mySound;
+	public String mySound;
 	public Cow (String type, String sound){
 		myType = type;
 		mySound = sound;
@@ -41,19 +57,13 @@ class NamedCow extends Cow{
 	public String getName(){
 		return myName;
 	}
-	public String getSound(){
-		return mySound;
-	}
-	public String getType(){
-		return myType;
-	}
 }
 class Chick implements Animal {
 	private String myType;
 	private String mySound;
 	public Chick (String type, String sound1, String sound2){
 		myType = type;
-		if (Math.random()< .5) {
+		if (Math.random()< .5f) {
 			mySound = sound1;
 		} else {
 			mySound = sound2;
@@ -103,4 +113,13 @@ class Farm {
 		}
 		System.out.println("The cow is known as " + ((NamedCow)aBunchOfAnimals[0]).getName());
 	}
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "OldMacDonald" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
